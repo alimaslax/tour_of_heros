@@ -1,21 +1,37 @@
 <h2>My Heroes</h2>
-
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
-  </button>
+<div class="container">
+  <div>
+    <label>
+      <input placeholder="Hero name:" #heroName [(ngModel)]="heroNames"/>
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(heroName.value); heroName.value=''">
+      add
+    </button>
+  </div>
+  <table mdbTable #tableEl="mdbTable" class="z-depth-2" searchPagination="true">
+    <thead>
+    <tr>
+      <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let hero of heroes; let i = index">
+      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+          scope="row">{{hero.id}}</th>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{hero.name}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+        <button mdbBtn color="red" rounded="true" size="sm" type="button" class="m-0" mdbWavesEffect (click)="delete(hero)">X</button>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot class="grey lighten-5 w-100">
+    <tr>
+      <td colspan="4">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
 </div>
-
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-    <button class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
-  </li>
-</ul>

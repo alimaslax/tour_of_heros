@@ -1,8 +1,10 @@
-<div class="toolbar"><img src="assets/hero.png">Tour of Heroes</div>
+<div class="toolbar"><img src="assets/hero.png">
+  <a style="margin-right: 1em;" routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a>
+</div>
 <h1>{{title}}</h1>
 <nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
