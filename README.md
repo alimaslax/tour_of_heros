@@ -89,5 +89,5 @@ docker run -d --name [name] -p [external port]:3000 IMAGE
 the example below binds our localhost port 3000 to port 3000 of the container, -d is for 
 run container in background and print container ID
 ```
-docker run -d --name tour_of_heroes -p 3000:3000 alimaslax/immunahw
+docker run -d --name tour_of_heroes -p 4200:80 alimaslax/tour_of_heroes
 ```
